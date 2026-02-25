@@ -16,6 +16,12 @@ public class Player : MonoBehaviour
 
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Enable();
+        _playerInputActions.Player.Dance.performed += Dance_performed;
+    }
+
+    private void Dance_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        _animator.SetBool("isDancing", true);
     }
 
     private void FixedUpdate()
@@ -54,6 +60,7 @@ public class Player : MonoBehaviour
 
             //Lance l'animation de marche
             _animator.SetBool("isWalking", true);
+            _animator.SetBool("isDancing", false);
         }
         else
         {
